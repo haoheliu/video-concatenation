@@ -40,12 +40,12 @@ if __name__ == "__main__":
 
     parser.add_argument("-i", "--input_videos_path", default="./data/videos", help="The direction containing all avi files")
     parser.add_argument("-o", "--output_video_path", default="merge.avi", help="output file path")
-    parser.add_argument("-w", "--width", default=1024, help="output width")
-    parser.add_argument("--height", nargs="+", default=[400,300,300], help="heigth for each row")
-    parser.add_argument("--number_for_each_row", nargs="+", default=[1,2,2], help="how many video in each row")
-    parser.add_argument("--padding", nargs="+", default=[100,10,10], help="left and right padding for each row")
-    parser.add_argument("--margin", default=25, help="margin between each frames (in a row)")
-    parser.add_argument("--fps", default=30, help="frame per second")
+    parser.add_argument("-w", "--width", type=int, default=1024, help="output width")
+    parser.add_argument("--height", nargs="+",type=int, default=[400,300,300], help="heigth for each row")
+    parser.add_argument("--number_for_each_row", nargs="+", type=int, default=[1,2,2], help="how many video in each row")
+    parser.add_argument("--padding", nargs="+",type=int, default=[100,10,10], help="left and right padding for each row")
+    parser.add_argument("--margin",type=int, default=25, help="margin between each frames (in a row)")
+    parser.add_argument("--fps", type=int,default=30, help="frame per second")
 
     args = parser.parse_args()
 
@@ -91,6 +91,7 @@ if __name__ == "__main__":
             c += 1
             pbar.update(int((c / (total_frames - 1)) * 100))
         except Exception as e:
+            print(e)
             break
     pbar.finish()
 
